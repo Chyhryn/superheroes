@@ -1,6 +1,6 @@
 # Superheroes app
 
-Frontend part of the app is deployed on Netlify [https://timely-cat-814bc5.netlify.app/hero/647031bcc258b63afe452d3d](https://timely-cat-814bc5.netlify.app/hero/647031bcc258b63afe452d3d)
+Frontend part of the app is deployed on Netlify [https://timely-cat-814bc5.netlify.app/](https://timely-cat-814bc5.netlify.app/)
 
 Backend part of the app is deployed on free Render account so the first-time data response takes about 1 min
 

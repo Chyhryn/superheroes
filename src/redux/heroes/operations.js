@@ -25,7 +25,6 @@ export const getHeroById = createAsyncThunk(
   async (id, thunkAPI) => {
     try {
       const response = await axios.get(`${API_HEROES}/${id}`);
-      console.log(response.data);
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -48,10 +47,8 @@ export const addHero = createAsyncThunk(
 export const updateHero = createAsyncThunk(
   "heroes/updateHero",
   async (obj, thunkAPI) => {
-    console.log("FORM-DATA: ", obj);
     try {
       const response = await axios.put(`${API_HEROES}/${obj.id}`, obj.data);
-      console.log(response.data);
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);

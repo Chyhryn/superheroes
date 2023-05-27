@@ -1,5 +1,11 @@
 # Superheroes app
 
+Frontend part of the app is deployed on Netlify [https://timely-cat-814bc5.netlify.app/hero/647031bcc258b63afe452d3d](https://timely-cat-814bc5.netlify.app/hero/647031bcc258b63afe452d3d)
+
+Backend part of the app is deployed on free Render account so the first-time data response takes about 1 min
+
+You can check the backend code [here](https://github.com/Chyhryn/superheroes-backend)
+
 ## Available Scripts
 
 In the project directory, you can run:

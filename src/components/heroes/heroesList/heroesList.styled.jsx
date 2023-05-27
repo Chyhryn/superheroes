@@ -1,5 +1,6 @@
 import styled from "styled-components";
-import { HiSearch } from "react-icons/hi";
+import { HiOutlinePlusSm, HiSearch } from "react-icons/hi";
+import { CustomButton } from "../../global.styled";
 
 export const HeroesBox = styled.div`
   display: flex;
@@ -14,8 +15,8 @@ export const HeroesInputContainer = styled.div`
 `;
 
 export const HeroesInput = styled.input`
-  padding: 4px 5px 4px 22px;
   height: 100%;
+  padding: 4px 5px 4px 22px;
   border: 1px solid ${(p) => p.theme.colors.border};
   border-radius: ${(p) => p.theme.radii.s};
 
@@ -34,21 +35,21 @@ export const SearchIcon = styled(HiSearch)`
   fill: ${(p) => p.theme.colors.border};
 `;
 
-export const AddBtn = styled.button`
-  // display: block;
-  // margin-left: auto;
-  padding: 5px 10px;
-  border-radius: ${(p) => p.theme.radii.s};
+export const HeroesAddBtn = styled(CustomButton)`
+  display: flex;
+  align-items: center;
+`;
 
-  background: ${(p) => p.theme.gradients.main};
-  color: ${(p) => p.theme.colors.white};
+export const PlusIcon = styled(HiOutlinePlusSm)`
+  width: 16px;
+  height: 16px;
+  margin-left: 4px;
+  fill: currentCollor;
+`;
 
-  transition: color ${(p) => p.theme.transitions.normal},
-    scale ${(p) => p.theme.transitions.normal};
-
-  &:hover,
-  &:focus {
-    scale: 1.05;
-    color: ${(p) => p.theme.colors.accent};
-  }
+export const List = styled.ul`
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-gap: 20px;
+  margin-bottom: 25px;
 `;

@@ -1,11 +1,11 @@
-import { Heroes } from "../../components/heroes/Heroes";
-import { Title } from "./homePage.styled";
+import { Title1 } from "../../components/global.styled";
+import { HeroesList } from "../../components/heroes/heroesList/HeroesList";
 
 export const HomePage = () => {
   return (
     <>
-      <Title>Superheroes</Title>
-      <Heroes />
+      <Title1>Superheroes</Title1>
+      <HeroesList />
     </>
   );
 };

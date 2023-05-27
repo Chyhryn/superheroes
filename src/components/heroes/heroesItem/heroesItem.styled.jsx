@@ -2,9 +2,9 @@ import styled from "styled-components";
 
 export const Item = styled.li`
   padding: 10px;
-  border: 1px solid ${(p) => p.theme.colors.border};
   border-radius: ${(p) => p.theme.radii.m};
-  box-shadow: ${(p) => p.theme.colors.border} 0px 6px 12px;
+  box-shadow: ${(p) => p.theme.colors.border} 0px 2px 12px;
+  cursor: pointer;
 
   transition: scale ${(p) => p.theme.transitions.normal};
 
@@ -14,13 +14,19 @@ export const Item = styled.li`
 `;
 
 export const HeroImgWrapper = styled.div`
-  width: 194px;
-  height: 194px;
+  width: 200px;
+  height: 300px;
   display: flex;
   justify-content: center;
   align-items: center;
   margin-bottom: 10px;
-  background: ${(p) => p.theme.colors.border};
+  overflow: hidden;
+`;
+
+export const HeroImg = styled.img`
+  width: 200px;
+  height: 300px;
+  object-fit: contain;
 `;
 
 export const HeroTitle = styled.p`

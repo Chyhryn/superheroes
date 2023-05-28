@@ -14,6 +14,16 @@ export const Label = styled.label`
   flex-direction: column;
 
   margin-bottom: 10px;
+
+  font-size: ${(p) => p.theme.fontSizes.l};
+`;
+
+export const InfoSpan = styled.span`
+  font-size: 12px;
+  color: ${(p) => p.theme.colors.additional};
+`;
+export const Alert = styled(InfoSpan)`
+  color: #ba0606;
 `;
 
 export const Input = styled.input`
@@ -55,7 +65,7 @@ export const TextArea = styled.textarea`
 export const AddImgLabel = styled(Label)`
   position: relative;
   flex-direction: row;
-  width: 230px;
+  // width: 230px;
   margin: 0 auto 20px;
   padding: 10px;
 

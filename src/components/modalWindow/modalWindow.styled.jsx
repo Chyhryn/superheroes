@@ -12,7 +12,7 @@ export const ModalWrapper = styled.div`
 
   max-height: 96%;
 
-  padding: 40px 20px;
+  padding: 30px 20px;
   border-radius: ${(p) => p.theme.radii.m};
   transform: translate(-50%, -50%) scale(1);
 

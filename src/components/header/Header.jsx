@@ -6,8 +6,8 @@ export const Header = () => {
   return (
     <HeaderSection>
       <HeaderContainer>
-        <Logo />
         <Navigation />
+        <Logo />
       </HeaderContainer>
     </HeaderSection>
   );

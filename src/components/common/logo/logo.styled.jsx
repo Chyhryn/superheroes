@@ -3,5 +3,5 @@ import { Link } from "react-router-dom";
 
 export const LogoLink = styled(Link)`
   width: 50px;
-  margin-right: 20px;
+  margin-right: calc(50% - 25px);
 `;

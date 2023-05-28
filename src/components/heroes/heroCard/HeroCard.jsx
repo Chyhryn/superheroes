@@ -197,7 +197,7 @@ export const HeroCard = () => {
             <HeroForm
               onClose={() => setIsOpenModal(false)}
               fieldName={fieldName}
-              value={fieldName !== "Images" && hero[fieldName]}
+              value={fieldName !== "Images" ? hero[fieldName] : []}
             />
           </ModalWindow>
         </>

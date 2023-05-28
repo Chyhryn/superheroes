@@ -13,6 +13,12 @@ export const theme = {
     m: 600,
     l: 700,
   },
+  fontSizes: {
+    xs: 12,
+    s: 14,
+    m: 16,
+    l: 18,
+  },
   radii: {
     s: "4px",
     m: "8px",

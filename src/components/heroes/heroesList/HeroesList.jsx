@@ -14,6 +14,7 @@ import {
   PlusIcon,
   SearchIcon,
   List,
+  Notification,
 } from "./heroesList.styled";
 import { Loader } from "../../common/loader/Loader";
 
@@ -69,7 +70,13 @@ export const HeroesList = () => {
         </HeroesAddBtn>
       </HeroesBox>
       {isLoading ? (
-        <Loader />
+        <>
+          <Notification>
+            Please wait till the data loading. We host the backend part on a
+            free Render account so the first loading can take 1 min.
+          </Notification>
+          <Loader />
+        </>
       ) : (
         <>
           <List>

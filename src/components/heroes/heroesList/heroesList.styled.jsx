@@ -53,3 +53,9 @@ export const List = styled.ul`
   grid-gap: 20px;
   margin-bottom: 25px;
 `;
+
+export const Notification = styled.p`
+  text-align: center;
+  padding: 20px 60px;
+  font-size: 20px;
+`;

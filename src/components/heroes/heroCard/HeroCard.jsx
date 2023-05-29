@@ -52,8 +52,6 @@ export const HeroCard = () => {
   const isLoading = useSelector(selectIsLoading);
   const shouldRedirect = useSelector(selectShouldRedirect);
 
-  if (shouldRedirect) navigate("/", { replace: true });
-
   const dispatch = useDispatch();
 
   const hero = useSelector(selectHero);
@@ -74,13 +72,10 @@ export const HeroCard = () => {
     setActiveImg(src);
   };
 
-  const handleDeleteHero = () => {
-    dispatch(deleteHero(hero._id));
-  };
-
   useEffect(() => {
+    if (shouldRedirect) navigate("/", { replace: true });
     dispatch(getHeroById(id));
-  }, [dispatch, id]);
+  }, [dispatch, id, shouldRedirect, navigate]);
 
   return (
     <>
@@ -182,7 +177,7 @@ export const HeroCard = () => {
                 {hero.catch_phrase}
               </HeroParagraph>
               {editState && (
-                <DelHeroBtn onClick={handleDeleteHero}>
+                <DelHeroBtn onClick={() => dispatch(deleteHero(hero._id))}>
                   <DelIcon />
                   <HeroBtnRihtSpan>Delete hero</HeroBtnRihtSpan>
                 </DelHeroBtn>

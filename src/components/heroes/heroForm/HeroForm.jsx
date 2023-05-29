@@ -17,6 +17,7 @@ import {
   TextArea,
 } from "./heroForm.styled";
 import "react-toastify/dist/ReactToastify.css";
+import { formValidation } from "../../../utils/formValidation";
 
 export const HeroForm = ({ onClose, fieldName = null, value = null }) => {
   const { id } = useParams();
@@ -32,37 +33,6 @@ export const HeroForm = ({ onClose, fieldName = null, value = null }) => {
 
   const dispatch = useDispatch();
 
-  const formValidation = () => {
-    const errors = {};
-    const emptyField = "Field is required and can't be empty";
-
-    if (!formValues.nickname) {
-      errors.nickname = emptyField;
-    }
-
-    if (!formValues.real_name) {
-      errors.real_name = emptyField;
-    }
-
-    if (!formValues.origin_description) {
-      errors.origin_description = emptyField;
-    }
-
-    if (!formValues.superpowers) {
-      errors.superpowers = emptyField;
-    }
-
-    if (!formValues.catch_phrase) {
-      errors.catch_phrase = emptyField;
-    }
-
-    if (formValues.Images && formValues.Images.length < 1) {
-      errors.Images = "Please add at least 1 hero image";
-    }
-
-    return errors;
-  };
-
   const handleOnChange = (e) => {
     if (e.target.name === "Images") {
       const selectedFiles = Array.from(e.target.files);
@@ -76,7 +46,8 @@ export const HeroForm = ({ onClose, fieldName = null, value = null }) => {
     e.preventDefault();
     const form = e.target;
     const formData = new FormData();
-    const errors = formValidation();
+    const errors = formValidation(formValues);
+
     if (Object.keys(errors).length === 0) {
       const addImgToFormData = () => {
         for (let i = 0; i < formValues.Images.length; i++) {
@@ -201,7 +172,6 @@ export const HeroForm = ({ onClose, fieldName = null, value = null }) => {
 
   useEffect(() => {
     if (fieldName) setFormValues({ [fieldName]: value });
-    console.log(value);
   }, [fieldName, value]);
 
   return (

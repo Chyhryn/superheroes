@@ -7,5 +7,6 @@ export const HeaderSection = styled.header`
 
 export const HeaderContainer = styled(Container)`
   display: flex;
+  justify-content: flex-end;
   align-items: center;
 `;

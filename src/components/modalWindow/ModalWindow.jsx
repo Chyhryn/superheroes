@@ -2,7 +2,7 @@ import { Backdrop } from "../common/backdrop/Backdrop";
 import { CloseBtn, CloseBtnIcon, ModalWrapper } from "./modalWindow.styled";
 import ReactDOM from "react-dom";
 
-export const ModalWindow = ({ open, onClose, fieldName = null, children }) => {
+export const ModalWindow = ({ open, onClose, children }) => {
   if (!open) return null;
 
   return ReactDOM.createPortal(

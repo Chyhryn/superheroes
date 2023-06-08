@@ -1,5 +1,4 @@
 import { useNavigate, useParams } from "react-router-dom";
-import { BACKEND_BASE_URL } from "../../../utils/appKeys";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { ModalWindow } from "../../modalWindow/ModalWindow";
@@ -87,26 +86,16 @@ export const HeroCard = () => {
               <HeroImgBox>
                 <HeroActiveImgWrapper>
                   <HeroActiveImg
-                    src={
-                      activeImg
-                        ? activeImg
-                        : `${BACKEND_BASE_URL}/${hero.Images[0]}`
-                    }
+                    src={activeImg ? activeImg : hero.Images[0]}
                     alt={`${hero.nickname} active`}
                   />
                 </HeroActiveImgWrapper>
                 <HeroImgList>
                   {hero.Images.map((image, index) => (
                     <HeroImgItem key={image} onClick={handleOnClickImgItem}>
-                      <HeroImg
-                        src={`${BACKEND_BASE_URL}/${image}`}
-                        alt={`${hero.nickname} ${index}`}
-                      />
+                      <HeroImg src={image} alt={`${hero.nickname} ${index}`} />
                       {editState && (
-                        <DelImgBtn
-                          name={`${image}`}
-                          onClick={handleOnClickDelete}
-                        >
+                        <DelImgBtn name={image} onClick={handleOnClickDelete}>
                           <DelIcon />
                         </DelImgBtn>
                       )}

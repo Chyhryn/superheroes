@@ -17,3 +17,7 @@ export const Button = styled(CustomButton)`
 
   text-align: center;
 `;
+
+export const CurrentButton = styled(Button)`
+  opacity: 0.5;
+`;

@@ -4,18 +4,21 @@ import { CustomButton } from "../../global.styled";
 
 export const HeroesBox = styled.div`
   display: flex;
-  justify-content: flex-end;
   align-items: center;
   margin-bottom: 20px;
 `;
 
 export const HeroesInputContainer = styled.div`
   position: relative;
-  margin-right: 20px;
+  display: flex;
+  align-items: center;
+  margin-left: 50%;
+  transform: translateX(-50%);
 `;
 
 export const HeroesInput = styled.input`
   height: 100%;
+  margin-right: 5px;
   padding: 4px 5px 4px 22px;
   border: 1px solid ${(p) => p.theme.colors.border};
   border-radius: ${(p) => p.theme.radii.s};
@@ -38,6 +41,15 @@ export const SearchIcon = styled(HiSearch)`
 export const HeroesAddBtn = styled(CustomButton)`
   display: flex;
   align-items: center;
+  margin-left: auto;
+`;
+
+export const HeroesSearchBtn = styled(CustomButton)`
+  // display: flex;
+  // align-items: center;
+  &:not(:last-child) {
+    margin-right: 5px;
+  }
 `;
 
 export const PlusIcon = styled(HiOutlinePlusSm)`

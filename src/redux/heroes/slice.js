@@ -5,12 +5,14 @@ import {
   deleteHeroImg,
   getHeroById,
   getHeroes,
+  getHeroesList,
   updateHero,
 } from "./operations";
 
 const heroesInitialState = {
   heroes: [],
   activeHero: {},
+  pagination: { heroesList: {}, totalPages: null, currentPage: 1 },
   isLoading: false,
   shouldRedirect: false,
 };
@@ -22,8 +24,16 @@ const handlePending = (state) => {
 export const heroesSlice = createSlice({
   name: "heroes",
   initialState: heroesInitialState,
+  reducers: {
+    changeCurrentPage: {
+      reducer(state, action) {
+        state.pagination.currentPage = action.payload;
+      },
+    },
+  },
   extraReducers: {
     [getHeroes.pending]: handlePending,
+    [getHeroesList.pending]: handlePending,
     [addHero.pending]: handlePending,
     [getHeroById.pending]: handlePending,
     [updateHero.pending]: handlePending,
@@ -32,6 +42,11 @@ export const heroesSlice = createSlice({
 
     [getHeroes.fulfilled](state, action) {
       state.heroes = action.payload;
+      state.isLoading = false;
+      state.shouldRedirect = false;
+    },
+    [getHeroesList.fulfilled](state, action) {
+      state.pagination = { ...state.pagination, ...action.payload };
       state.isLoading = false;
       state.shouldRedirect = false;
     },
@@ -63,4 +78,5 @@ export const heroesSlice = createSlice({
   },
 });
 
+export const { changeCurrentPage } = heroesSlice.actions;
 export const heroesReducer = heroesSlice.reducer;

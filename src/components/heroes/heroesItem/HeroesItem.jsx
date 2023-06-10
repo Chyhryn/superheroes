@@ -4,12 +4,13 @@ import { DEFAULT_HERO_IMG } from "../../../utils/appKeys";
 
 export const HeroesItem = ({ hero }) => {
   const navigate = useNavigate();
+  const frontImage = hero.Images[0];
   return (
     <>
       <Item onClick={() => navigate(`/hero/${hero._id}`)}>
         <HeroImgWrapper>
           <HeroImg
-            src={hero.Images[0] ? hero.Images[0] : DEFAULT_HERO_IMG}
+            src={frontImage ? frontImage : DEFAULT_HERO_IMG}
             alt={hero.nickname}
           />
         </HeroImgWrapper>

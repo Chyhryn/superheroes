@@ -1,8 +1,11 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { HeroesItem } from "../heroesItem/HeroesItem";
 import { useDispatch, useSelector } from "react-redux";
-import { getHeroes } from "../../../redux/heroes/operations";
-import { selectHeroes, selectIsLoading } from "../../../redux/heroes/selectors";
+import { getHeroesList } from "../../../redux/heroes/operations";
+import {
+  selectHeroesList,
+  selectIsLoading,
+} from "../../../redux/heroes/selectors";
 import { Pagination } from "../../common/pagination/Pagination";
 import { ModalWindow } from "../../modalWindow/ModalWindow";
 import { HeroForm } from "../heroForm/HeroForm";
@@ -15,42 +18,37 @@ import {
   SearchIcon,
   List,
   Notification,
+  HeroesSearchBtn,
 } from "./heroesList.styled";
 import { Loader } from "../../common/loader/Loader";
-
-const ITEMS_PER_PAGE = 5;
+import { changeCurrentPage } from "../../../redux/heroes/slice";
 
 export const HeroesList = () => {
-  const heroes = useSelector(selectHeroes);
+  const inputRef = useRef("");
+  const { heroesList, totalPages, currentPage } = useSelector(selectHeroesList);
   const isLoading = useSelector(selectIsLoading);
   const [isOpenModal, setIsOpenModal] = useState(false);
-  const [currentPage, setCurrentPage] = useState(1);
   const [searchValue, setSearchValue] = useState("");
   const dispatch = useDispatch();
 
-  const handleOnChangeSearchInput = (e) => {
-    setSearchValue(e.target.value.toLowerCase());
-  };
-
-  const filtered = heroes.filter((hero) =>
-    hero.nickname.toLowerCase().includes(searchValue)
-  );
-
-  const totalPages = Math.ceil(heroes.length / ITEMS_PER_PAGE);
-
-  const getCurrentItems = () => {
-    const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
-    const endIndex = startIndex + ITEMS_PER_PAGE;
-    return filtered.slice(startIndex, endIndex);
-  };
-
   const handlePageChange = (pageNumber) => {
-    setCurrentPage(pageNumber);
+    dispatch(changeCurrentPage(pageNumber));
+  };
+
+  const handleOnClickInputBtn = (e) => {
+    dispatch(changeCurrentPage(1));
+    if (e.currentTarget.name === "search") {
+      setSearchValue(inputRef.current.value);
+    } else {
+      setSearchValue("");
+    }
   };
 
   useEffect(() => {
-    dispatch(getHeroes());
-  }, [dispatch]);
+    if (currentPage) {
+      dispatch(getHeroesList({ page: currentPage, search: searchValue }));
+    }
+  }, [dispatch, currentPage, searchValue]);
 
   return (
     <>
@@ -58,11 +56,17 @@ export const HeroesList = () => {
         <HeroesInputContainer>
           <HeroesInput
             type="text"
-            onChange={handleOnChangeSearchInput}
+            ref={inputRef}
             placeholder="Search"
             name="search"
           />
           <SearchIcon />
+          <HeroesSearchBtn name="search" onClick={handleOnClickInputBtn}>
+            Search
+          </HeroesSearchBtn>
+          <HeroesSearchBtn name="refresh" onClick={handleOnClickInputBtn}>
+            Refresh
+          </HeroesSearchBtn>
         </HeroesInputContainer>
         <HeroesAddBtn type="button" onClick={() => setIsOpenModal(true)}>
           Add new hero
@@ -80,17 +84,16 @@ export const HeroesList = () => {
       ) : (
         <>
           <List>
-            {heroes.length > 0 &&
-              getCurrentItems().map((hero) => (
+            {heroesList.length > 0 &&
+              heroesList.map((hero) => (
                 <HeroesItem hero={hero} key={hero._id} />
               ))}
           </List>
-          {heroes.length > 5 && (
-            <Pagination
-              totalPages={totalPages}
-              handlePageChange={handlePageChange}
-            />
-          )}
+          <Pagination
+            totalPages={totalPages}
+            handlePageChange={handlePageChange}
+            currentPage={currentPage}
+          />
         </>
       )}
 

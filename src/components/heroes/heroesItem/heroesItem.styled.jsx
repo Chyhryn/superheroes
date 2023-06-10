@@ -26,7 +26,7 @@ export const HeroImgWrapper = styled.div`
 export const HeroImg = styled.img`
   width: 200px;
   height: 300px;
-  object-fit: contain;
+  object-fit: cover;
 `;
 
 export const HeroTitle = styled.p`
